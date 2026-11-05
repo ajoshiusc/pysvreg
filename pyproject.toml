@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pysvreg"
+version = "0.1.0"
+description = "MATLAB-independent Python commands for BrainSuite SVReg"
+license = "GPL-2.0-only"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "scipy>=1.13",
+    "nibabel",
+]
+
+[project.scripts]
+clean_intermediate_files = "dev.pysvreg.entrypoints:run_clean_intermediate_files"
+generate_stats_xls = "dev.pysvreg.entrypoints:run_generate_stats_xls"
+generate_vol_param_stats_xls = "dev.pysvreg.entrypoints:run_generate_vol_param_stats_xls"
+gui_bias_correct = "dev.pysvreg.entrypoints:run_gui_bias_correct"
+refine_ROIs2 = "dev.pysvreg.entrypoints:run_refine_ROIs2"
+refine_sulci_hemi = "dev.pysvreg.entrypoints:run_refine_sulci_hemi"
+register_cc_curve = "dev.pysvreg.entrypoints:run_register_cc_curve"
+svreg = "dev.pysvreg.entrypoints:run_svreg"
+svreg_apply_map = "dev.pysvreg.entrypoints:run_svreg_apply_map"
+svreg_get_mni_tal = "dev.pysvreg.entrypoints:run_svreg_get_mni_tal"
+svreg_label_surf_hemi = "dev.pysvreg.entrypoints:run_svreg_label_surf_hemi"
+svreg_labelwith_atlas = "dev.pysvreg.entrypoints:run_svreg_labelwith_atlas"
+svreg_make_atlas = "dev.pysvreg.entrypoints:run_svreg_make_atlas"
+svreg_mni2sub = "dev.pysvreg.entrypoints:run_svreg_mni2sub"
+svreg_multiparc = "dev.pysvreg.entrypoints:run_svreg_multiparc"
+svreg_prepare_files = "dev.pysvreg.entrypoints:run_svreg_prepare_files"
+svreg_refinements = "dev.pysvreg.entrypoints:run_svreg_refinements"
+svreg_resample = "dev.pysvreg.entrypoints:run_svreg_resample"
+svreg_runall = "dev.pysvreg.entrypoints:run_svreg_runall"
+svreg_smooth_surf_function = "dev.pysvreg.entrypoints:run_svreg_smooth_surf_function"
+svreg_smooth_vol_function = "dev.pysvreg.entrypoints:run_svreg_smooth_vol_function"
+svreg_sulcal_map = "dev.pysvreg.entrypoints:run_svreg_sulcal_map"
+svreg_thickness2atlas = "dev.pysvreg.entrypoints:run_svreg_thickness2atlas"
+svreg_volreg = "dev.pysvreg.entrypoints:run_svreg_volreg"
+thicknessPVC = "dev.pysvreg.entrypoints:run_thicknessPVC"
+volmap_ball = "dev.pysvreg.entrypoints:run_volmap_ball"
+warp_points = "dev.pysvreg.entrypoints:run_warp_points"
+warp_coord_vol = "dev.pysvreg.entrypoints:run_warp_coord_vol"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["dev.pysvreg*"]
+namespaces = true
+
+[tool.setuptools.package-data]
+"dev.pysvreg" = ["README.md", "COMPATIBILITY.md"]
