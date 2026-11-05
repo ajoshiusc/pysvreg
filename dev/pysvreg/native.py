@@ -1683,7 +1683,7 @@ def l2_surface_matching(
     subject_surface,
     *,
     fraction: float = 0.05,
-    niter: int = 62,
+    niter: int = 63,
     step_size: float = 0.6,
     lap_reg: float = 25.0,
     corr_step: int = 12,
@@ -1829,9 +1829,9 @@ def _solve_coupled_square_system(
         matvec=lambda x: np.asarray(system_free.T @ (system_free @ x)).ravel(),
         dtype=np.float64,
     )
-    # MATLAB uses mypcg_lp on the normal equations with the harmonic map as
-    # the initial iterate. Reuse the same ported routine here instead of
-    # SciPy CG so the solve behavior matches more closely.
+    # MATLAB uses mypcg_lp on the normal equations with the caller-provided
+    # iterate. svreg_label_surf_hemi starts that iterate at zero and reuses
+    # each result for the next orientation-correction cycle.
     solution = mypcg_lp(lhs, target, 1e-112, maxiter, diag, initial)
     full = np.zeros(2 * n1 + 2 * n2, dtype=np.float64)
     full[free_mask] = solution
@@ -1849,10 +1849,10 @@ def coupled_square_map_from_guidance(
     sigma: float = 10.0,
     mu: float = 100.0,
     lam: float = 0.1,
-    maxiter: int = 1800,
-    solve_cycles: int = 1,
-    initial_map: str = "harmonic",
-    l2_iterations: int = 80,
+    maxiter: int = 2600,
+    solve_cycles: int = 4,
+    initial_map: str = "zero",
+    l2_iterations: int = 63,
 ):
     atlas_geom = _surface_copy(atlas_guidance if atlas_guidance is not None else atlas_surface)
     subject_geom = _surface_copy(subject_guidance if subject_guidance is not None else subject_surface)

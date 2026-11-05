@@ -162,10 +162,10 @@ def svreg_label_surf_hemi(subbasename: str, atlasbasename: str, hemi: str, *vara
                 transform_subject_to_atlas=transform,
                 corr_step=4,
                 sigma=10.0,
-                maxiter=int(os.environ.get("PYSVREG_SURFACE_MAP_SOLVER_ITER", "1800")),
-                solve_cycles=int(os.environ.get("PYSVREG_SURFACE_MAP_CYCLES", "1")),
-                initial_map=os.environ.get("PYSVREG_SURFACE_MAP_INIT", "harmonic"),
-                l2_iterations=int(os.environ.get("PYSVREG_SURFACE_MAP_L2_ITER", "80")),
+                maxiter=int(os.environ.get("PYSVREG_SURFACE_MAP_SOLVER_ITER", "2600")),
+                solve_cycles=int(os.environ.get("PYSVREG_SURFACE_MAP_CYCLES", "4")),
+                initial_map=os.environ.get("PYSVREG_SURFACE_MAP_INIT", "zero"),
+                l2_iterations=int(os.environ.get("PYSVREG_SURFACE_MAP_L2_ITER", "63")),
             )
         except Exception as exc:
             if os.environ.get("PYSVREG_DEBUG_SURFACE_MAP") == "1":
