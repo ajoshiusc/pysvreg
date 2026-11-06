@@ -1850,7 +1850,7 @@ def coupled_square_map_from_guidance(
     mu: float = 100.0,
     lam: float = 0.1,
     maxiter: int = 2600,
-    solve_cycles: int = 4,
+    solve_cycles: int = 1,
     initial_map: str = "zero",
     l2_iterations: int = 63,
 ):

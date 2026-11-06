@@ -163,7 +163,10 @@ def svreg_label_surf_hemi(subbasename: str, atlasbasename: str, hemi: str, *vara
                 corr_step=4,
                 sigma=10.0,
                 maxiter=int(os.environ.get("PYSVREG_SURFACE_MAP_SOLVER_ITER", "2600")),
-                solve_cycles=int(os.environ.get("PYSVREG_SURFACE_MAP_CYCLES", "4")),
+                # MATLAB reduces n_corr_it to one when either sulcal curve
+                # set is absent; this Python path does not yet consume the
+                # optional curve pair during square-map initialization.
+                solve_cycles=int(os.environ.get("PYSVREG_SURFACE_MAP_CYCLES", "1")),
                 initial_map=os.environ.get("PYSVREG_SURFACE_MAP_INIT", "zero"),
                 l2_iterations=int(os.environ.get("PYSVREG_SURFACE_MAP_L2_ITER", "63")),
             )
